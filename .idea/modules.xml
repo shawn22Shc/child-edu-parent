@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/child-edu-parent.iml" filepath="$PROJECT_DIR$/child-edu-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recommend-server/recommend-server.iml" filepath="$PROJECT_DIR$/recommend-server/recommend-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recommend-server-manager/recommend-server-manager.iml" filepath="$PROJECT_DIR$/recommend-server-manager/recommend-server-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-demo/spring-boot-demo.iml" filepath="$PROJECT_DIR$/spring-boot-demo/spring-boot-demo.iml" />
+    </modules>
+  </component>
+</project>

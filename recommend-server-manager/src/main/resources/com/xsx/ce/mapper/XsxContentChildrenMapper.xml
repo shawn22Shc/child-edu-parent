@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xsx.ce.mapper.XsxContentChildrenMapper" >
+  <resultMap id="BaseResultMap" type="com.xsx.ce.pojo.XsxContentChildren" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="content_id" property="contentId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="manager_id" property="managerId" jdbcType="BIGINT" />
+    <result column="upload_time" property="uploadTime" jdbcType="BIGINT" />
+    <result column="rank" property="rank" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="format" property="format" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="length_time" property="lengthTime" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="in_content" property="inContent" jdbcType="INTEGER" />
+    <result column="tag" property="tag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, content_id, name, cover, manager_id, upload_time, rank, path, format, size, length_time, 
+    status, price, in_content, tag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xsx.ce.pojo.XsxContentChildrenExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xsx_content_children
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from xsx_content_children
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from xsx_content_children
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xsx.ce.pojo.XsxContentChildrenExample" >
+    delete from xsx_content_children
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xsx.ce.pojo.XsxContentChildren" >
+    insert into xsx_content_children (id, content_id, name, 
+      cover, manager_id, upload_time, 
+      rank, path, format, 
+      size, length_time, status, 
+      price, in_content, tag
+      )
+    values (#{id,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{cover,jdbcType=VARCHAR}, #{managerId,jdbcType=BIGINT}, #{uploadTime,jdbcType=BIGINT}, 
+      #{rank,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, #{format,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{lengthTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{price,jdbcType=INTEGER}, #{inContent,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsx.ce.pojo.XsxContentChildren" >
+    insert into xsx_content_children
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="contentId != null" >
+        content_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="cover != null" >
+        cover,
+      </if>
+      <if test="managerId != null" >
+        manager_id,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="format != null" >
+        format,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="lengthTime != null" >
+        length_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="inContent != null" >
+        in_content,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null" >
+        #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="lengthTime != null" >
+        #{lengthTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="inContent != null" >
+        #{inContent,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xsx.ce.pojo.XsxContentChildrenExample" resultType="java.lang.Integer" >
+    select count(*) from xsx_content_children
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update xsx_content_children
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.contentId != null" >
+        content_id = #{record.contentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cover != null" >
+        cover = #{record.cover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerId != null" >
+        manager_id = #{record.managerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.uploadTime != null" >
+        upload_time = #{record.uploadTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.rank != null" >
+        rank = #{record.rank,jdbcType=INTEGER},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.format != null" >
+        format = #{record.format,jdbcType=VARCHAR},
+      </if>
+      <if test="record.size != null" >
+        size = #{record.size,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lengthTime != null" >
+        length_time = #{record.lengthTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=INTEGER},
+      </if>
+      <if test="record.inContent != null" >
+        in_content = #{record.inContent,jdbcType=INTEGER},
+      </if>
+      <if test="record.tag != null" >
+        tag = #{record.tag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update xsx_content_children
+    set id = #{record.id,jdbcType=BIGINT},
+      content_id = #{record.contentId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      cover = #{record.cover,jdbcType=VARCHAR},
+      manager_id = #{record.managerId,jdbcType=BIGINT},
+      upload_time = #{record.uploadTime,jdbcType=BIGINT},
+      rank = #{record.rank,jdbcType=INTEGER},
+      path = #{record.path,jdbcType=VARCHAR},
+      format = #{record.format,jdbcType=VARCHAR},
+      size = #{record.size,jdbcType=VARCHAR},
+      length_time = #{record.lengthTime,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=INTEGER},
+      in_content = #{record.inContent,jdbcType=INTEGER},
+      tag = #{record.tag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsx.ce.pojo.XsxContentChildren" >
+    update xsx_content_children
+    <set >
+      <if test="contentId != null" >
+        content_id = #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        manager_id = #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        format = #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="lengthTime != null" >
+        length_time = #{lengthTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="inContent != null" >
+        in_content = #{inContent,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsx.ce.pojo.XsxContentChildren" >
+    update xsx_content_children
+    set content_id = #{contentId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      manager_id = #{managerId,jdbcType=BIGINT},
+      upload_time = #{uploadTime,jdbcType=BIGINT},
+      rank = #{rank,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR},
+      format = #{format,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      length_time = #{lengthTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      in_content = #{inContent,jdbcType=INTEGER},
+      tag = #{tag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

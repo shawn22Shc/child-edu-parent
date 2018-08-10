@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xsx.ce.mapper.XsxUserMapper" >
+  <resultMap id="BaseResultMap" type="com.xsx.ce.pojo.XsxUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="CHAR" />
+    <result column="wx_openid" property="wxOpenid" jdbcType="VARCHAR" />
+    <result column="wx_unionid" property="wxUnionid" jdbcType="VARCHAR" />
+    <result column="head_img" property="headImg" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="qq_openid" property="qqOpenid" jdbcType="VARCHAR" />
+    <result column="device_id_for_visitor" property="deviceIdForVisitor" jdbcType="VARCHAR" />
+    <result column="game_area_id" property="gameAreaId" jdbcType="INTEGER" />
+    <result column="longtime_create" property="longtimeCreate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, username, passwd, device_id, device_token, mobile, wx_openid, wx_unionid, head_img, 
+    gender, age, type, qq_openid, device_id_for_visitor, game_area_id, longtime_create
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xsx.ce.pojo.XsxUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xsx_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from xsx_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from xsx_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xsx.ce.pojo.XsxUserExample" >
+    delete from xsx_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xsx.ce.pojo.XsxUser" >
+    insert into xsx_user (id, username, passwd, 
+      device_id, device_token, mobile, 
+      wx_openid, wx_unionid, head_img, 
+      gender, age, type, 
+      qq_openid, device_id_for_visitor, game_area_id, 
+      longtime_create)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{deviceId,jdbcType=VARCHAR}, #{deviceToken,jdbcType=VARCHAR}, #{mobile,jdbcType=CHAR}, 
+      #{wxOpenid,jdbcType=VARCHAR}, #{wxUnionid,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{qqOpenid,jdbcType=VARCHAR}, #{deviceIdForVisitor,jdbcType=VARCHAR}, #{gameAreaId,jdbcType=INTEGER}, 
+      #{longtimeCreate,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsx.ce.pojo.XsxUser" >
+    insert into xsx_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="deviceToken != null" >
+        device_token,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="wxOpenid != null" >
+        wx_openid,
+      </if>
+      <if test="wxUnionid != null" >
+        wx_unionid,
+      </if>
+      <if test="headImg != null" >
+        head_img,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="qqOpenid != null" >
+        qq_openid,
+      </if>
+      <if test="deviceIdForVisitor != null" >
+        device_id_for_visitor,
+      </if>
+      <if test="gameAreaId != null" >
+        game_area_id,
+      </if>
+      <if test="longtimeCreate != null" >
+        longtime_create,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceToken != null" >
+        #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=CHAR},
+      </if>
+      <if test="wxOpenid != null" >
+        #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUnionid != null" >
+        #{wxUnionid,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null" >
+        #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="qqOpenid != null" >
+        #{qqOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIdForVisitor != null" >
+        #{deviceIdForVisitor,jdbcType=VARCHAR},
+      </if>
+      <if test="gameAreaId != null" >
+        #{gameAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="longtimeCreate != null" >
+        #{longtimeCreate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xsx.ce.pojo.XsxUserExample" resultType="java.lang.Integer" >
+    select count(*) from xsx_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update xsx_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwd != null" >
+        passwd = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceId != null" >
+        device_id = #{record.deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceToken != null" >
+        device_token = #{record.deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=CHAR},
+      </if>
+      <if test="record.wxOpenid != null" >
+        wx_openid = #{record.wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxUnionid != null" >
+        wx_unionid = #{record.wxUnionid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headImg != null" >
+        head_img = #{record.headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.qqOpenid != null" >
+        qq_openid = #{record.qqOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceIdForVisitor != null" >
+        device_id_for_visitor = #{record.deviceIdForVisitor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameAreaId != null" >
+        game_area_id = #{record.gameAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.longtimeCreate != null" >
+        longtime_create = #{record.longtimeCreate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update xsx_user
+    set id = #{record.id,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      passwd = #{record.passwd,jdbcType=VARCHAR},
+      device_id = #{record.deviceId,jdbcType=VARCHAR},
+      device_token = #{record.deviceToken,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=CHAR},
+      wx_openid = #{record.wxOpenid,jdbcType=VARCHAR},
+      wx_unionid = #{record.wxUnionid,jdbcType=VARCHAR},
+      head_img = #{record.headImg,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=INTEGER},
+      age = #{record.age,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      qq_openid = #{record.qqOpenid,jdbcType=VARCHAR},
+      device_id_for_visitor = #{record.deviceIdForVisitor,jdbcType=VARCHAR},
+      game_area_id = #{record.gameAreaId,jdbcType=INTEGER},
+      longtime_create = #{record.longtimeCreate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsx.ce.pojo.XsxUser" >
+    update xsx_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceToken != null" >
+        device_token = #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=CHAR},
+      </if>
+      <if test="wxOpenid != null" >
+        wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUnionid != null" >
+        wx_unionid = #{wxUnionid,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null" >
+        head_img = #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="qqOpenid != null" >
+        qq_openid = #{qqOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIdForVisitor != null" >
+        device_id_for_visitor = #{deviceIdForVisitor,jdbcType=VARCHAR},
+      </if>
+      <if test="gameAreaId != null" >
+        game_area_id = #{gameAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="longtimeCreate != null" >
+        longtime_create = #{longtimeCreate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsx.ce.pojo.XsxUser" >
+    update xsx_user
+    set username = #{username,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      device_token = #{deviceToken,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=CHAR},
+      wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      wx_unionid = #{wxUnionid,jdbcType=VARCHAR},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      qq_openid = #{qqOpenid,jdbcType=VARCHAR},
+      device_id_for_visitor = #{deviceIdForVisitor,jdbcType=VARCHAR},
+      game_area_id = #{gameAreaId,jdbcType=INTEGER},
+      longtime_create = #{longtimeCreate,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
